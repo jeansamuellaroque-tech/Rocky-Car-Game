@@ -1,4 +1,4 @@
-# 🚗 Race Car Game - Glassmorphism Edition
+# 🚗 Rocky Car Game - Glassmorphism Edition
 
 ## 📌 Descripción del Proyecto
 
@@ -150,7 +150,7 @@ El diseño del juego utiliza:
 
 ## 👨‍💻 Autor
 
-**Tu Nombre**
+**Jean Samuel Laroque**
 2026
 
 ---
