@@ -1,6 +1,28 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+const bgMusic = document.getElementById("bgMusic");
+const hitSound = document.getElementById("hitSound");
+
+// 🔊 CONTROL SONIDO
+let soundEnabled = false;
+
+function startSound() {
+  if (!soundEnabled) {
+    bgMusic.volume = 0.3;
+    bgMusic.play().then(() => {
+      soundEnabled = true;
+    }).catch(() => {});
+  }
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+
+  if (soundEnabled) bgMusic.play();
+  else bgMusic.pause();
+}
+
 // 📱 RESPONSIVE
 function resizeCanvas() {
   canvas.width = Math.min(window.innerWidth * 0.9, 400);
@@ -24,31 +46,20 @@ function getLaneX(lane) {
 
 let targetX = getLaneX(currentLane);
 
-// =====================
 // 🚗 PLAYER
-// =====================
 const player = {
   y: canvas.height - 100,
   width: laneWidth - 10,
   height: 80,
-  x: getLaneX(currentLane),
+  x: targetX,
   speedY: 0
 };
 
 const playerImg = new Image();
 playerImg.src = "assets/img/player.png";
 
-// =====================
 // 🚗 ENEMIGOS
-// =====================
-const enemyImgs = [
-  new Image(),
-  new Image(),
-  new Image(),
-  new Image(),
-  new Image()
-];
-
+const enemyImgs = [new Image(), new Image(), new Image(), new Image(), new Image()];
 enemyImgs[0].src = "assets/img/enemy1.png";
 enemyImgs[1].src = "assets/img/enemy2.png";
 enemyImgs[2].src = "assets/img/enemy3.png";
@@ -66,42 +77,35 @@ let highScore = localStorage.getItem("highScore") || 0;
 
 let roadY = 0;
 
-// =====================
 // SPEED
-// =====================
 function getEnemySpeed(type) {
-  const baseSpeed = 3 + (level * 0.8);
-
-  if (type === 3) return baseSpeed * 1.5;
-  if (type === 4) return baseSpeed * 0.7;
-
-  return baseSpeed;
+  const base = 3 + (level * 0.8);
+  if (type === 3) return base * 1.5;
+  if (type === 4) return base * 0.7;
+  return base;
 }
 
-// =====================
-// SPAWN ENEMY
-// =====================
+// SPAWN
 function createEnemy() {
-  const lane = Math.floor(Math.random() * lanes);
-  const type = Math.floor(Math.random() * 5);
-
   enemies.push({
-    lane,
+    lane: Math.floor(Math.random() * lanes),
     y: -100,
     width: laneWidth - 10,
     height: 80,
-    speed: getEnemySpeed(type),
-    type
+    speed: getEnemySpeed(Math.floor(Math.random() * 5)),
+    type: Math.floor(Math.random() * 5)
   });
 }
 
-// =====================
 // 🎮 CONTROLES PC
-// =====================
 window.addEventListener("keydown", (e) => {
+
+  startSound();
 
   if (e.key.toLowerCase() === "p") {
     paused = !paused;
+    if (paused) bgMusic.pause();
+    else if (soundEnabled) bgMusic.play();
     return;
   }
 
@@ -124,65 +128,43 @@ window.addEventListener("keydown", (e) => {
 });
 
 window.addEventListener("keyup", (e) => {
-  if (e.key === "ArrowUp" || e.key === "ArrowDown") {
-    player.speedY = 0;
-  }
+  if (e.key === "ArrowUp" || e.key === "ArrowDown") player.speedY = 0;
 });
 
-// =====================
-// 📱 TOUCH (IZQ / DER)
-// =====================
+// 📱 TOUCH
 canvas.addEventListener("touchstart", (e) => {
   e.preventDefault();
+  startSound();
 
   if (gameState === "start") gameState = "playing";
 
   const rect = canvas.getBoundingClientRect();
   const x = e.touches[0].clientX - rect.left;
 
-  if (x < canvas.width / 2 && currentLane > 0) {
-    currentLane--;
-  } else if (x > canvas.width / 2 && currentLane < lanes - 1) {
-    currentLane++;
-  }
+  if (x < canvas.width / 2 && currentLane > 0) currentLane--;
+  else if (x > canvas.width / 2 && currentLane < lanes - 1) currentLane++;
 
   targetX = getLaneX(currentLane);
 });
 
-// 🔥 TOUCH CONTINUO (PRO)
-canvas.addEventListener("touchmove", (e) => {
-  e.preventDefault();
-
-  const rect = canvas.getBoundingClientRect();
-  const x = e.touches[0].clientX - rect.left;
-
-  if (x < canvas.width / 2 && currentLane > 0) {
-    currentLane--;
-  } else if (x > canvas.width / 2 && currentLane < lanes - 1) {
-    currentLane++;
-  }
-
-  targetX = getLaneX(currentLane);
-});
-
-// =====================
-// 📱 BOTONES MOBILE
-// =====================
+// 📱 BOTONES
 function moveLeft() {
+  startSound();
   if (currentLane > 0) currentLane--;
   targetX = getLaneX(currentLane);
 }
 
 function moveRight() {
+  startSound();
   if (currentLane < lanes - 1) currentLane++;
   targetX = getLaneX(currentLane);
 }
 
-// =====================
 // 🖱️ CLICK ENEMIGOS
-// =====================
 canvas.addEventListener("click", (e) => {
   if (gameState !== "playing" || paused) return;
+
+  startSound();
 
   const rect = canvas.getBoundingClientRect();
   const mx = e.clientX - rect.left;
@@ -191,23 +173,20 @@ canvas.addEventListener("click", (e) => {
   enemies.forEach((enemy, i) => {
     const x = getLaneX(enemy.lane);
 
-    if (
-      mx > x &&
-      mx < x + enemy.width &&
-      my > enemy.y &&
-      my < enemy.y + enemy.height
-    ) {
+    if (mx > x && mx < x + enemy.width && my > enemy.y && my < enemy.y + enemy.height) {
       enemies.splice(i, 1);
       score++;
+
+      if (soundEnabled) {
+        hitSound.currentTime = 0;
+        hitSound.play();
+      }
     }
   });
 });
 
-// =====================
 // UPDATE
-// =====================
 function update() {
-
   player.x += (targetX - player.x) * 0.2;
   player.y += player.speedY;
 
@@ -229,9 +208,7 @@ function update() {
   });
 }
 
-// =====================
 // DRAW
-// =====================
 function drawBackground() {
   if (roadImg.complete) {
     ctx.drawImage(roadImg, 0, roadY, canvas.width, canvas.height);
@@ -250,9 +227,7 @@ function drawEnemies() {
   });
 }
 
-// =====================
 // COLLISION
-// =====================
 function detectCollision() {
   enemies.forEach(enemy => {
     const x = getLaneX(enemy.lane);
@@ -273,18 +248,14 @@ function detectCollision() {
   });
 }
 
-// =====================
 // HUD
-// =====================
 function drawHUD() {
   document.getElementById("score").textContent = score;
   document.getElementById("level").textContent = level;
   document.getElementById("highScore").textContent = highScore;
 }
 
-// =====================
 // RESET
-// =====================
 function resetGame() {
   enemies = [];
   score = 0;
@@ -294,9 +265,7 @@ function resetGame() {
   player.y = canvas.height - 100;
 }
 
-// =====================
 // LOOP
-// =====================
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -337,14 +306,12 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-// =====================
 // SPAWN
-// =====================
 setInterval(() => {
   if (gameState === "playing" && !paused) {
     createEnemy();
   }
 }, 1000);
 
-// =====================
+// START
 window.onload = gameLoop;
