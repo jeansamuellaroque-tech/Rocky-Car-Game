@@ -306,6 +306,39 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
+// ⏸️ PAUSA
+function togglePause() {
+  paused = !paused;
+
+  if (paused) {
+    if (soundEnabled) bgMusic.pause();
+  } else {
+    if (soundEnabled) bgMusic.play();
+  }
+}
+
+// 🔄 REINICIAR
+function restartGame() {
+  resetGame();
+  gameState = "playing";
+
+  if (soundEnabled) {
+    bgMusic.currentTime = 0;
+    bgMusic.play();
+  }
+}
+
+canvas.addEventListener("touchstart", (e) => {
+
+  ctx.fillStyle = "red";
+  ctx.font = "28px Arial";
+  ctx.fillText("GAME OVER", 100, 260);
+
+  ctx.font = "16px Arial";
+  ctx.fillText("Toca o presiona para reiniciar", 60, 300);
+
+});
+
 // SPAWN
 setInterval(() => {
   if (gameState === "playing" && !paused) {
