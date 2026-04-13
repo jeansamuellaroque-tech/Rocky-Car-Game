@@ -1,0 +1,58 @@
+/* 🔹 RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🔥 FONDO GAMER */
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: Arial, sans-serif;
+
+  /* 🎮 Fondo imagen del juego */
+  background: url("../img/fondo.jpg") no-repeat center center fixed;
+  background-size: cover;
+
+  /* 🖱️ Cursor personalizado */
+  cursor: url("../img/cursor.png") 8 8, auto;
+}
+
+
+/* 💎 GLASS EFFECT */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* 🎮 CANVAS */
+canvas {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 15px;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: black;
+  margin: auto;
+  display: block;
+
+  touch-action: none;
+}
+
+/* BOTONES */
+button {
+  border-radius: 10px;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  canvas {
+    max-width: 100%;
+  }
+}
