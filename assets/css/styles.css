@@ -56,3 +56,12 @@ button {
     max-width: 100%;
   }
 }
+
+button {
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+  transition: 0.2s;
+}
+
+button:active {
+  transform: scale(0.9);
+}

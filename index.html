@@ -53,13 +53,38 @@
       <canvas id="gameCanvas"></canvas>
 
       <!-- MOBILE -->
-      <div class="d-md-none mt-3">
-        <button onclick="moveLeft()" class="btn btn-light m-1">⬅️</button>
-        <button onclick="moveRight()" class="btn btn-light m-1">➡️</button>
-        <button onclick="togglePause()" class="btn btn-warning m-1">⏸️ Pausa</button>
-        <button onclick="restartGame()" class="btn btn-danger m-1">🔄 Reiniciar</button>
+      <div class="d-md-none mt-3 text-center">
+
+       <!-- MOVIMIENTO LATERAL -->
+        <div>
+            <button onclick="moveLeft()" class="btn btn-light m-1">⬅️</button>
+           <button onclick="moveRight()" class="btn btn-light m-1">➡️</button>
+        </div>
+
+        <!-- MOVIMIENTO VERTICAL -->
+        <div>
+         <button 
+          ontouchstart="startMoveUp()" 
+          ontouchend="stopMoveY()" 
+         onmousedown="startMoveUp()" 
+         onmouseup="stopMoveY()" 
+           class="btn btn-light m-1">⬆️</button>
+
+         <button 
+          ontouchstart="startMoveDown()" 
+          ontouchend="stopMoveY()" 
+          onmousedown="startMoveDown()" 
+          onmouseup="stopMoveY()" 
+          class="btn btn-light m-1">⬇️</button>
+        </div>
+
+         <!-- CONTROL JUEGO -->
+        <div>
+          <button onclick="togglePause()" class="btn btn-warning m-1">⏸️ Pausa</button>
+          <button onclick="restartGame()" class="btn btn-danger m-1">🔄 Reiniciar</button>
+        </div>
       </div>
-    </div>
+   </div>
 
     <!-- INFO -->
     <div class="col-md-3">

@@ -346,5 +346,20 @@ setInterval(() => {
   }
 }, 1000);
 
+// ⬆️ AVANZAR
+function startMoveUp() {
+  player.speedY = -5;
+}
+
+// ⬇️ REGRESAR
+function startMoveDown() {
+  player.speedY = 5;
+}
+
+// 🛑 DETENER
+function stopMoveY() {
+  player.speedY = 0;
+}
+
 // START
 window.onload = gameLoop;
