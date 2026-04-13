@@ -1,23 +1,113 @@
-# 🚗 Trafic Car Game
+# 🚗 Race Car Game - Glassmorphism Edition
 
-🎮 Videojuego 2D desarrollado con **HTML5 Canvas API + JavaScript + Bootstrap + CSS Glassmorphism**
+## 📌 Descripción del Proyecto
 
----
+Este proyecto consiste en el desarrollo de un videojuego en 2D utilizando la API de Canvas de HTML5, en el cual el jugador controla un coche que debe evitar colisiones con vehículos enemigos que aparecen de forma aleatoria en múltiples carriles.
 
-## 👨‍💻 PROGRAMADOR
-
-Este proyecto fue desarrollado por:
-
-**Jean Samuel Laroque**  
-📘 Ingeniería en Sistemas Computacionales  
-💻 Programación Web – 2026  
+El juego incorpora una interfaz moderna basada en el diseño **Glassmorphism**, proporcionando una experiencia visual atractiva y profesional.
 
 ---
 
-## 📁 RUTA DEL PROYECTO
+## 🎯 Objetivo
 
-Estructura recomendada del proyecto:
-Trafic-Car-Game/
+El objetivo principal del videojuego es:
+
+* Evitar los coches enemigos
+* Incrementar la puntuación (Score)
+* Alcanzar el mayor nivel posible
+* Superar el High Score almacenado
+
+---
+
+## 🧠 Justificación
+
+Este proyecto permite aplicar conceptos fundamentales de desarrollo web interactivo como:
+
+* Manipulación del Canvas API
+* Programación en JavaScript orientada a eventos
+* Manejo de animaciones en tiempo real
+* Uso de almacenamiento local (LocalStorage)
+* Diseño responsive y adaptable a dispositivos móviles
+
+Además, fortalece habilidades en diseño UI/UX mediante el uso de estilos modernos como Glassmorphism.
+
+---
+
+## ⚙️ Tecnologías Utilizadas
+
+* HTML5
+* CSS3 (Glassmorphism + Responsive Design)
+* JavaScript (Vanilla)
+* Bootstrap 5
+
+---
+
+## 🎮 Funcionamiento del Juego
+
+### 🔹 Mecánica
+
+* El jugador controla un coche en una carretera de múltiples carriles
+* Los enemigos aparecen aleatoriamente y se desplazan hacia abajo
+* El jugador debe esquivarlos o eliminarlos con clic
+
+### 🔹 Sistema de Puntuación
+
+* +1 punto por cada enemigo evitado o eliminado
+* Cada 50 puntos se incrementa el nivel
+* A mayor nivel, mayor velocidad de los enemigos
+
+### 🔹 Dificultad
+
+El juego aumenta progresivamente su dificultad mediante:
+
+* Incremento de velocidad de los enemigos
+* Aparición constante de múltiples vehículos
+
+---
+
+## 🎮 Controles
+
+### 💻 PC
+
+* ⬅️➡️ Flechas: mover el coche lateralmente
+* ⬆️⬇️ Flechas: avanzar / retroceder
+* 🖱️ Click: eliminar enemigos
+* P: Pausar el juego
+
+### 📱 Dispositivos móviles
+
+* Tocar lado izquierdo/derecho: mover coche
+* Botones en pantalla: control alternativo
+
+---
+
+## 📱 Compatibilidad
+
+El videojuego es completamente responsive y funciona en:
+
+* Computadoras de escritorio 💻
+* Tablets 📱
+* Teléfonos móviles 📱
+
+Incluye soporte para eventos táctiles (touch).
+
+---
+
+## 🎨 Interfaz
+
+El diseño del juego utiliza:
+
+* Estilo Glassmorphism (efecto vidrio)
+* Layout con Bootstrap
+* Paneles informativos
+* Interfaz limpia y moderna
+
+---
+
+## 🧩 Estructura del Proyecto
+
+```
+/project
 │
 ├── index.html
 ├── README.md
@@ -25,127 +115,48 @@ Trafic-Car-Game/
 ├── assets/
 │   ├── css/
 │   │   └── styles.css
-│   │
 │   ├── js/
 │   │   └── main.js
-│   │
-│   ├── img/
-│   │   ├── player.png
-│   │   ├── enemy1.png
-│   │   ├── enemy2.png
-│   │   ├── enemy3.png
-│   │   ├── enemy4.png
-│   │   ├── enemy5.png
-│   │   ├── road.jpg
-│   │   ├── fondo.jpg
-│   │   ├── cursor.png
-│   │   └── favicon.png
-│
-└── docs/ (opcional)
-    └── documentación.pdf
-
-
+│   └── img/
+│       ├── player.png
+│       ├── enemy1.png
+│       ├── enemy2.png
+│       ├── enemy3.png
+│       ├── enemy4.png
+│       ├── enemy5.png
+│       ├── road.jpg
+│       └── favicon.png
+```
 
 ---
 
-## 🧩 CONTEXTO
+## 🚀 Instalación y Ejecución
 
-El presente proyecto consiste en el desarrollo de un videojuego tipo “endless runner” donde el jugador controla un vehículo en una carretera con múltiples carriles.
-
-El sistema fue desarrollado utilizando:
-
-- HTML5 Canvas API
-- JavaScript Vanilla
-- Bootstrap 5
-- CSS Glassmorphism
-- LocalStorage
-
-
-El videojuego simula una carretera con múltiples carriles donde el jugador controla un vehículo y debe evitar obstáculos (enemigos) generados de forma aleatoria.
-
-El proyecto se desarrolla con fines académicos para aplicar conceptos de:
-
-Programación en JavaScript
-Manipulación de gráficos en Canvas
-Eventos de teclado y mouse
-Animación en tiempo real
-Lógica de videojuegos
+1. Descargar o clonar el repositorio
+2. Abrir el archivo `index.html` en el navegador
+3. ¡Disfrutar el juego!
 
 ---
 
-## 🎯 OBJETIVO
-El objetivo principal es desarrollar un videojuego interactivo que permita:
+## 📈 Mejoras Futuras
 
-Controlar un vehículo en diferentes carriles
-Evitar colisiones con enemigos en movimiento
-Incrementar la dificultad progresivamente según el nivel
-Registrar la puntuación del jugador y su récord (High Score)
-
-Además, se busca aplicar habilidades como:
-
-Manejo de eventos en tiempo real
-Detección de colisiones
-Generación aleatoria de objetos
-Uso de LocalStorage para persistencia de datos
+* Sonidos y efectos de motor
+* Animaciones de colisión
+* Sistema de vidas
+* Menú de inicio avanzado
+* Ranking online
 
 ---
 
-## 💡 JUSTIFICACIÓN
+## 👨‍💻 Autor
 
-Este proyecto es importante porque permite integrar conocimientos teóricos y prácticos del desarrollo web moderno.
-
-El uso de la Canvas API facilita la creación de gráficos y animaciones en tiempo real dentro del navegador, mientras que JavaScript permite controlar la lógica del videojuego.
-
-Asimismo, el proyecto mejora habilidades como:
-
-Lógica de programación
-Resolución de problemas
-Diseño de interfaces interactivas
-Experiencia de usuario (UX)
-
-La implementación de un sistema de enemigos con diferentes velocidades (enemy4 más rápido y enemy5 más lento) añade dinamismo y dificultad progresiva al juego.
+**Tu Nombre**
+2026
 
 ---
 
-## ⚙️ OPERACIÓN DEL VIDEOJUEGO
+## 🏁 Conclusión
 
-El funcionamiento del videojuego se basa en las siguientes mecánicas:
-
-🎮 Inicio del juego
-El juego inicia al presionar cualquier tecla
-Se muestra una pantalla inicial con instrucciones básicas
-🚗 Control del jugador
-⬅️➡️ Movimiento entre carriles
-⬆️⬇️ Movimiento vertical del vehículo
-P: Pausa del juego 🚧 ENEMIGOS (5 TIPOS)
-
-Los enemigos aparecen aleatoriamente en los carriles y se desplazan hacia abajo.
-
-El juego incluye 5 tipos de enemigos:
-| Tipo | Descripción |
-|------|------------|
-| enemy1 | velocidad normal 🚗 |
-| enemy2 | velocidad normal 🚗 |
-| enemy3 | velocidad normal 🚗 |
-| enemy4 | 🔥 más rápido (mayor dificultad) |
-| enemy5 | 🐢 más lento (más fácil de esquivar) |
-
-Cada enemigo tiene velocidad dinámica según su tipo  
-Se generan aleatoriamente en carriles  
-Aumentan la dificultad con el nivel  
-Cada enemigo tiene comportamiento dinámico según el nivel del jugador.
+El desarrollo de este videojuego demuestra la capacidad de integrar múltiples tecnologías web para crear una aplicación interactiva, dinámica y visualmente atractiva. Además, evidencia el uso adecuado de lógica de programación, eventos y diseño responsivo para mejorar la experiencia del usuario.
 
 ---
-
-Este proyecto demuestra la capacidad del desarrollador **Jean Samuel Laroque** para integrar:
-
-- Lógica de programación
-- Animaciones en Canvas
-- Diseño UI moderno (Glassmorphism)
-- Manejo de eventos y colisiones
-- Persistencia de datos
-
----
-
-
-Proyecto desarrollado por Jean Samuel Laroque, demostrando habilidades en desarrollo web interactivo y diseño de videojuegos 2D con tecnologías modernas.
